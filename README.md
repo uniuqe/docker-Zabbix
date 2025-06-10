@@ -1,60 +1,65 @@
-# Zabbix NGINX PostgreSQL + Grafana
-## Example container (docker compose)
+# 🖥️ Docker-Zabbix Monitoring Stack
 
-- [Official Zabbix Dockerfiles](https://github.com/zabbix/zabbix-docker)
-- [Zabbix plugin for Grafana dashboard](https://github.com/grafana/grafana-zabbix)
+A complete monitoring stack using **Zabbix 7.2.9**, **PostgreSQL 16.2-alpine**, and **Grafana 12.0.0**, fully containerized with Docker Compose.
 
+---
 
-![scheme](./.images/scheme.excalidraw.png)
+## 🚀 Quick Start
 
-For those who are used to using zabbix to collect metrics, but want to start drawing dashboards more beautifully
+1. Clone the repository:
 
-Example simple docker-compose service
+   git clone https://github.com/uniuqe/docker-Zabbix.git
+   cd docker-zabbix
+Create and edit the .env file with your configuration (example in .env.example).
 
-Current versions:
-- **Zabbix Server:** 7.2.4
-- **PostgreSQL:** 16-alpine
-- **Grafana:** 11.6.0
+Start the stack:
+docker-compose up -d
+Access the services:
 
-## Guide
+Zabbix: http://localhost:8080
+Default user: Admin
+Default password: zabbix
 
-### Clone repo:
-```
-git clone https://github.com/akmalovaa/zabbix-docker.git
-cd zabbix-docker
-```
+Grafana: http://localhost:3000
+Default user: admin
+Default password: as set in .env or GF_SECURITY_ADMIN_PASSWORD
 
-### Check or change settings in the `.env` file
+📦 Components
+Zabbix Server with PostgreSQL backend
 
-### Run docker-compose:
-```
-docker compose up -d
-```
+Zabbix Web Frontend (Nginx + PHP)
 
-The first launch takes 1-2 minutes
+Zabbix Agent 2
 
-### Zabbix `localhost:8080`
-default user password 
-- **login:** Admin
-- **password:** zabbix
+PostgreSQL 16.2 (Alpine)
 
+Grafana 12.0.0 with Zabbix datasource plugin
 
-**Zabbix server** - Data Collection / Host / change use connect to DNS `zabbix-agent`
-![zabbix-agent](./.images/zabbix-agent-settings.png)
-![zabbix-agent](./.images/zabbix-agent-check.png)
+⚙️ Configuration
+Edit .env file to configure:
+POSTGRES_USER=zabbix
+POSTGRES_PASSWORD=your-strong-password
+POSTGRES_DB=zabbix
 
-### Grafana `localhost:3000` 
+GF_SECURITY_ADMIN_USER=admin
+GF_SECURITY_ADMIN_PASSWORD=your-strong-password
 
-default user password (change `grafana/grafana.ini` auth.anonymous enabled)
-- **login:** admin
-- **password:** 12345
+TZ=Asia/Tehran
+🛠️ Useful Commands
+View logs:
+docker-compose logs -f zabbix-server
+docker-compose logs -f postgres
+docker-compose logs -f grafana
+Stop and remove containers:
+docker-compose down
 
-Test data source
+Restart stack:
+docker-compose restart
 
-`Grafana -> Connections -> Data sources -> zabbix -> Test`
-![zabbix-agent](./.images/data-source-test.png)
+🔒 Security Notes
+Change all default passwords before production use.
+Use secure .env files and avoid committing sensitive data.
+Consider enabling HTTPS on Grafana and Zabbix frontend for production.
 
-### Debug
-```
-docker compose logs --tail=10 -f
-```
+📄 License
+This project is open source and available under the MIT License.
