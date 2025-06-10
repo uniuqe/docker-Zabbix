@@ -45,6 +45,7 @@ View logs:
 docker-compose logs -f zabbix-server
 docker-compose logs -f postgres
 docker-compose logs -f grafana
+
 Stop and remove containers:
 docker-compose down
 
