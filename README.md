@@ -56,6 +56,3 @@ docker-compose restart
 Change all default passwords before production use.
 Use secure .env files and avoid committing sensitive data.
 Consider enabling HTTPS on Grafana and Zabbix frontend for production.
-
-📄 License
-This project is open source and available under the MIT License.
