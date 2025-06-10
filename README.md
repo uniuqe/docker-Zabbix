@@ -26,13 +26,9 @@ Default password: as set in .env or GF_SECURITY_ADMIN_PASSWORD
 
 📦 Components
 Zabbix Server with PostgreSQL backend
-
 Zabbix Web Frontend (Nginx + PHP)
-
 Zabbix Agent 2
-
 PostgreSQL 16.2 (Alpine)
-
 Grafana 12.0.0 with Zabbix datasource plugin
 
 ⚙️ Configuration
@@ -40,11 +36,10 @@ Edit .env file to configure:
 POSTGRES_USER=zabbix
 POSTGRES_PASSWORD=your-strong-password
 POSTGRES_DB=zabbix
-
 GF_SECURITY_ADMIN_USER=admin
 GF_SECURITY_ADMIN_PASSWORD=your-strong-password
-
 TZ=Asia/Tehran
+
 🛠️ Useful Commands
 View logs:
 docker-compose logs -f zabbix-server
